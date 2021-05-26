@@ -1,5 +1,5 @@
 import React from 'react';
-import FormInput from '../form-input/FormInput.Component.js';
+import FormInput from '../form-input/FormInput.Component';
 import Button from '../button/Button.Component';
 import { signInWithGoogle } from '../../firebase/firebase.utils';
 import { useInput } from '../../hooks/input/input-hook';

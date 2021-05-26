@@ -1,13 +1,18 @@
-import { useState } from 'react';
+import { ChangeEvent, ChangeEventHandler, useState } from 'react';
 
-type Input = {
+export type InputHook = {
 	value: string,
 	setValue: Function,
 	reset: Function,
-	bind: object
+	bind: Bind,
 };
 
-const useInput = (initialValue: string): Input => {
+type Bind = {
+	value: string,
+	onChange: ChangeEventHandler,
+};
+
+const useInput = (initialValue: string): InputHook => {
 	const [ value, setValue ] = useState(initialValue);
 
 	return {
@@ -16,11 +21,11 @@ const useInput = (initialValue: string): Input => {
 		reset: () => setValue(''),
 		bind: {
 			value,
-			onChange: (event: any) => {
-				setValue(event.target.value);
+			onChange: (event: ChangeEvent<HTMLInputElement>) => {
+				setValue(event.target.value.toString());
 			}
 		}
-	}
+	}	
 };
 
 export { useInput };

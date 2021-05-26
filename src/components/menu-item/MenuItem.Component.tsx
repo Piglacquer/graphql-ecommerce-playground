@@ -1,7 +1,14 @@
 import React from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter, Link, RouteComponentProps } from 'react-router-dom';
 
-import './menu-item.styles.scss';
+import './menuItem.styles.scss';
+
+interface MenuItem extends RouteComponentProps {
+	title: string,
+	imageUrl: string,
+	linkUrl: string,
+	size?: string,
+}
 
 const MenuItem = ({
 	title,
@@ -10,7 +17,7 @@ const MenuItem = ({
 	linkUrl,
 	history,
 	match,
-}) => (
+}:MenuItem) => (
 	<div
 		className={`${size} menu-item`}
 		onClick={() => history.push(`${match.url}${linkUrl}`)}

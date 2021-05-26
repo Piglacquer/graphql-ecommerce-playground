@@ -1,8 +1,8 @@
 import React from 'react';
-
+import type { CollectionItem_ } from '../collection-preview/collection-preview.types';
 import './collectionItem.styles.scss';
 
-const CollectionItem = ({ id, name, imageUrl, price }) => (
+const CollectionItem = ({ name, imageUrl, price }: CollectionItem_) => (
 	<div className='collection-item'>
 		<div
 			className='image'

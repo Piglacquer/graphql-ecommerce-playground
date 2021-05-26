@@ -1,6 +1,12 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
+import { User } from '@firebase/auth-types';
+
+type FormData = {
+	email: string,
+	password: string,
+}
 
 const firebaseConfig = {
 	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -21,7 +27,7 @@ provider.setCustomParameters({ prompt: 'select_account' });
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
 export const signOut = () => auth.signOut();
 
-export const createUserProfileDocument = async (userAuth, additionalData) => {
+export const createUserProfileDocument = async (userAuth: User, additionalData:any) => {
 	if (!userAuth) return;
 	const userRef = firestore.doc(`users/${userAuth.uid}`);
 	const snapshot = await userRef.get();
@@ -44,7 +50,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 	return userRef;
 };
 
-export const createUserWithEmailAndPassword = (formData) => {
+export const createUserWithEmailAndPassword = (formData: FormData) => {
 	const { email, password } = formData;
 
 	return auth.createUserWithEmailAndPassword(email, password);

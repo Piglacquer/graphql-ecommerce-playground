@@ -29,7 +29,7 @@ const errorDictionary = (errorType: string): string => {
 	}
 }
 
-const SignUp = () => {
+const SignUp:React.FC = () => {
 	const { value: displayName, bind: bindDisplayName, reset: resetDisplayName } = useInput('');
 	const { value: email, bind: bindEmail, reset: resetEmail } = useInput('');
 	const { value: password, bind: bindPassword, reset: resetPassword } = useInput('');

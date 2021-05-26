@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Header from './components/header/Header';
 import HomePage from './pages/home/Home.Component';

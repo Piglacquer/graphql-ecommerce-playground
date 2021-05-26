@@ -1,8 +1,9 @@
 import React from 'react';
 import CollectionItem from '../collection-item/Collection-Item.Component';
+import type { Props } from './collection-preview.types';
 import './collection-preview.styles.scss';
 
-const CollectionPreview = ({title, items}) => (
+const CollectionPreview = ({title, items}: Props) => (
 	<div className='collection-preview'>
 		<h1 className='title'>{title}</h1>
 		<div className='preview'>
