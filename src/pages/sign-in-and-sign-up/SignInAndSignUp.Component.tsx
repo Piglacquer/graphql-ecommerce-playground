@@ -4,7 +4,7 @@ import SignUp from '../../components/sign-up/SignUp.Component';
 
 import './signInAndSignUp.styles.scss';
 
-const SignInAndSignUp = () => (
+const SignInAndSignUp:React.FC = () => (
 	<div className='sign-in-and-sign-up'>
 		<SignIn />
 		<SignUp />

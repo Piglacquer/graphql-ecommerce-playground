@@ -2,15 +2,15 @@ import React from 'react';
 import FormInput from '../form-input/FormInput.Component.js';
 import Button from '../button/Button.Component';
 import { signInWithGoogle } from '../../firebase/firebase.utils';
-import { useInput } from '../../hooks/input-hook';
+import { useInput } from '../../hooks/input/input-hook';
 
 import './signIn.styles.scss';
 
-const SignIn = () => {
+const SignIn:React.FC = () => {
 	const { value: email, bind: bindEmail, reset: resetEmail } = useInput('');
 	const { value: password, bind: bindPassword, reset: resetPassword } = useInput('')
 
-	const handleSubmit = (event) => {
+	const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
 		event.preventDefault();
 		resetEmail();
 		resetPassword();

@@ -1,6 +1,13 @@
 import { useState } from 'react';
 
-export const useInput = initialValue => {
+type Input = {
+	value: string,
+	setValue: Function,
+	reset: Function,
+	bind: object
+};
+
+const useInput = (initialValue: string): Input => {
 	const [ value, setValue ] = useState(initialValue);
 
 	return {
@@ -9,9 +16,11 @@ export const useInput = initialValue => {
 		reset: () => setValue(''),
 		bind: {
 			value,
-			onChange: event => {
+			onChange: (event: any) => {
 				setValue(event.target.value);
 			}
 		}
 	}
 };
+
+export { useInput };

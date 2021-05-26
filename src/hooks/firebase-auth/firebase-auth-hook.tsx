@@ -1,17 +1,19 @@
 import { useState, useEffect } from 'react';
-import { auth, createUserProfileDocument, createUserWithEmailAndPassword } from '../firebase/firebase.utils';
+import { User } from '@firebase/auth-types';
+import { auth } from '../../firebase/firebase.utils';
 
 export const useAuthentication = () => {
-	const [ user, setUser ] = useState(null);
+	const [ user, setUser ] = useState<User | null>(null);
 
 	useEffect(() => {
 		const removeListener = () => {
 			auth.onAuthStateChanged(user => {
+				console.warn('yeet user', user);
 				setUser(user);
 			})
 		}
 		return () => removeListener()
-	}, [user?.id])
+	}, [user?.uid])
 
 	return user;
 }

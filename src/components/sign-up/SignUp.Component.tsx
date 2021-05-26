@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import Button from '../button/Button.Component';
 import FormInput from '../form-input/FormInput.Component';
-import { useInput } from '../../hooks/input-hook';
+import { useInput } from '../../hooks/input/input-hook';
 import { createUserWithEmailAndPassword, createUserProfileDocument } from '../../firebase/firebase.utils';
 
 import './signUp.styles.scss';
 
-const errorDictionary = (errorType) => {
+type Error = {
+	message: undefined | string,
+	type: undefined | string,
+}
+
+const errorDictionary = (errorType: string): string => {
 	switch(errorType) {
 		case 'auth/weak-password': {
 			return 'password';
@@ -29,16 +34,17 @@ const SignUp = () => {
 	const { value: email, bind: bindEmail, reset: resetEmail } = useInput('');
 	const { value: password, bind: bindPassword, reset: resetPassword } = useInput('');
 	const { value: confirmPassword, bind: bindConfirmPassword, reset: resetConfirmPassword } = useInput('');
-	const [ { message, type }, setError ] = useState({
+	const [ { message, type }, setError ] = useState<Error> ({
 		message: undefined,
 		type: undefined,
 	});
-	const resetError = () => setError({ message: undefined, type: undefined})
-	const handleSubmit = async (event) => {
+	const resetError = (): void => setError({ message: undefined, type: undefined})
+	const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
 		event.preventDefault();
 
 		if (password !== confirmPassword) {
-			return setError({message: "Passwords don't match", type: errorDictionary('password mismatch')});
+			setError({message: "Passwords don't match", type: errorDictionary('password mismatch')});
+			return;
 		}
 
 		try {

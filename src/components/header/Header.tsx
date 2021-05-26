@@ -1,10 +1,15 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { RouteComponentProps, Link, withRouter } from 'react-router-dom';
 import { signOut } from '../../firebase/firebase.utils'; 
-import './header.styles.scss';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
+import { User } from '@firebase/auth-types';
+import './header.styles.scss';
 
-const Header = ({ currentUser }) => (
+interface Props extends RouteComponentProps {
+	currentUser: User | null,
+};
+
+const Header:React.FC<Props> = ({ currentUser }) => (
 	<div className='header'>
 		<Link to='/' className='logo-container'>
 			<Logo className='logo' />
