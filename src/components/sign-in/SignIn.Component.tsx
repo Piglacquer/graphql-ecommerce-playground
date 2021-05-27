@@ -1,7 +1,7 @@
 import React from 'react';
 import FormInput from '../form-input/FormInput.Component';
 import Button from '../button/Button.Component';
-import { signInWithGoogle } from '../../firebase/firebase.utils';
+import { signInWithGoogle, signInWithEmailAndPassword } from '../../firebase/firebase.utils';
 import { useInput } from '../../hooks/input/input-hook';
 
 import './signIn.styles.scss';
@@ -12,6 +12,7 @@ const SignIn:React.FC = () => {
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
 		event.preventDefault();
+		signInWithEmailAndPassword({email, password});
 		resetEmail();
 		resetPassword();
 	};
@@ -26,7 +27,7 @@ const SignIn:React.FC = () => {
 				<FormInput label='Password' {...bindPassword} />
 				<div className='buttons'>
 					<Button type='submit'>Sign In</Button>
-					<Button onClick={signInWithGoogle} isGoogleSignin>Sign in with Google</Button>
+					<Button type='button' onClick={signInWithGoogle} isGoogleSignin>Sign in with Google</Button>
 				</div>
 			</form>
 		</div>

@@ -56,4 +56,14 @@ export const createUserWithEmailAndPassword = (formData: FormData) => {
 	return auth.createUserWithEmailAndPassword(email, password);
 };
 
+export const signInWithEmailAndPassword = async (formData: FormData) => {
+	const { email, password } = formData;
+
+	try {
+		return await auth.signInWithEmailAndPassword(email, password);
+	} catch (error) {
+		console.warn(`error: ${error}`);
+	}
+}
+
 export default firebase;
